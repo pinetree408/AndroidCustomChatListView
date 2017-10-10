@@ -1,6 +1,7 @@
 package com.pinetree408.pp.customchatlistview.ui;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -14,10 +15,11 @@ import java.util.ArrayList;
  */
 
 public class MyAdapter extends ArrayAdapter<MyData> {
-    ArrayList<MyData> list;
+    private ArrayList<MyData> list;
 
+    @NonNull
     @Override
-    public View getView(int position, View v, ViewGroup parent) {
+    public View getView(int position, View v, @NonNull ViewGroup parent) {
         MyData md = list.get(position);
 
         if (v == null) {

@@ -49,7 +49,8 @@ public class MyView extends View {
         } else {
             p.setColor(Color.rgb(255, 255, 0));
         }
-        canvas.drawRoundRect(new RectF(DX, DY, getWidth() - DX, getHeight() - DY * 2), RX, RY, p);
+        RectF rf = new RectF(DX, DY, getWidth() - DX, getHeight() - DY * 2);
+        canvas.drawRoundRect(rf, RX, RY, p);
 
         Path path = new Path();
         if (MyData.LEFT == direction) {
