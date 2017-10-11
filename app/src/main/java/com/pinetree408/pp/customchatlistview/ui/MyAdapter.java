@@ -10,10 +10,6 @@ import com.pinetree408.pp.customchatlistview.model.MyData;
 
 import java.util.ArrayList;
 
-/**
- * Created by leesangyoon on 2017. 10. 9..
- */
-
 public class MyAdapter extends ArrayAdapter<MyData> {
     private ArrayList<MyData> list;
 

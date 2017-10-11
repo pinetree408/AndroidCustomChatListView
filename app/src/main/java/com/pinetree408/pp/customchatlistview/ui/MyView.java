@@ -10,10 +10,6 @@ import android.view.View;
 
 import com.pinetree408.pp.customchatlistview.model.MyData;
 
-/**
- * Created by leesangyoon on 2017. 10. 9..
- */
-
 public class MyView extends View {
     static final int DX = 5;
     static final int DY = 5;
@@ -22,6 +18,10 @@ public class MyView extends View {
 
     String text;
     int direction;
+
+    Paint p;
+    Path path;
+    RectF rf;
 
     public String getText() {
         return text;
@@ -41,39 +41,53 @@ public class MyView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawColor(Color.BLACK);
+        rf.set(DX, DY, getWidth() - DX, getHeight() - DY * 2);
 
-        Paint p = new Paint();
-        if (MyData.LEFT == direction) {
-            p.setColor(Color.rgb(50, 255, 255));
-        } else {
-            p.setColor(Color.rgb(255, 255, 0));
+        switch (getDirection()) {
+            case MyData.LEFT:
+                p.setColor(Color.rgb(50, 255, 255));
+                break;
+            case MyData.RIGHT:
+                p.setColor(Color.rgb(255, 255, 0));
+                break;
         }
-        RectF rf = new RectF(DX, DY, getWidth() - DX, getHeight() - DY * 2);
+
+        switch (getDirection()) {
+            case MyData.LEFT:
+                path.moveTo(DX + 20, getHeight() - DY * 2);
+                path.lineTo(DX + 20, getHeight());
+                path.lineTo(DX + 30, getHeight() - DY * 2);
+                break;
+            case MyData.RIGHT:
+                path.moveTo(getWidth() - DX - 20, getHeight() - DY * 2);
+                path.lineTo(getWidth() - DX - 20, getHeight());
+                path.lineTo(getWidth() - DX - 30, getHeight() - DY * 2);
+                break;
+        }
+
         canvas.drawRoundRect(rf, RX, RY, p);
-
-        Path path = new Path();
-        if (MyData.LEFT == direction) {
-            path.moveTo(DX + 20, getHeight() - DY * 2);
-            path.lineTo(DX + 20, getHeight());
-            path.lineTo(DX + 30, getHeight() - DY * 2);
-        } else {
-            path.moveTo(getWidth() - DX - 20, getHeight() - DY * 2);
-            path.lineTo(getWidth() - DX - 20, getHeight());
-            path.lineTo(getWidth() - DX - 30, getHeight() - DY * 2);
-        }
+        canvas.drawColor(Color.BLACK);
         canvas.drawPath(path, p);
-
-        p.setTextSize(12);
-        p.setColor(Color.BLACK);
-        canvas.drawText(text, 20, 20, p);
+        canvas.drawText(getText(), 20, 20, p);
         super.onDraw(canvas);
     }
 
     public MyView(Context context, int direction) {
         super(context);
-        text = "";
+        this.text = "";
         this.direction = direction;
+
+        p = new Paint();
+        p.setTextSize(12);
+        p.setColor(Color.BLACK);
+
+        path = new Path();
+        rf = new RectF();
+
         setMinimumHeight(50);
+    }
+
+    public MyView(Context context) {
+        super(context);
     }
 }

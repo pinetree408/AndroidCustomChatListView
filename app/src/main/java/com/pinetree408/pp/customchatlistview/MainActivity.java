@@ -25,7 +25,9 @@ public class MainActivity extends AppCompatActivity {
 
         list = new ArrayList<>();
         for (int i = 0; i < MAX_ITEMS; i++) {
-            MyData md = new MyData("item " + i, i % 2);
+            MyData md = new MyData();
+            md.setText("item " + i);
+            md.setDirection(i % 2);
             list.add(md);
         }
 
