@@ -19,14 +19,15 @@ public class MyAdapter extends ArrayAdapter<MyData> {
         MyData md = list.get(position);
 
         if (v == null) {
-            v = new MyView(parent.getContext(), md.getDirection());
+            v = new MyView(parent.getContext());
         }
 
         String s = md.getText();
+        int d = md.getDirection();
 
         MyView mv = (MyView) v;
         mv.setText(s);
-        mv.setDirection(md.getDirection());
+        mv.setDirection(d);
         mv.postInvalidate();
 
         return v;
