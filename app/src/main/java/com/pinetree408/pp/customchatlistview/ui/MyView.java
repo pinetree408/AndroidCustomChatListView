@@ -61,7 +61,6 @@ public class MyView extends View {
                 break;
         }
 
-        canvas.drawColor(Color.BLACK);
         canvas.drawRoundRect(rf, RX, RY, bp);
         canvas.drawPath(path, bp);
         canvas.drawText(getText(), 20, 20, tp);

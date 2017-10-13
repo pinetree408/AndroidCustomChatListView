@@ -34,7 +34,5 @@ public class MainActivity extends AppCompatActivity {
         ma = new MyAdapter(this, 0, list);
 
         lv.setAdapter(ma);
-        lv.setDivider(null);
-        lv.setDividerHeight(0);
     }
 }
